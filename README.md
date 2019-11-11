@@ -241,7 +241,7 @@ and freezing that frame, each object was replaced with an identical spray-painte
 spray painted objects and the transparent objects they were replacing could be observed. With high resolution images, sub-millimeter accuracy can be achieved in the positioning
 of the objects.
 
-Run the `capture_image.py` script to launch a window that steams images directly from a Realsense D400 series camera. Press 'c' to capture the transparent frame, 'v' to capture the opaque frame and spacebar to confirm.
+Run the `capture_image.py` script to launch a window that streams images directly from a Realsense D400 series camera. Press 'c' to capture the transparent frame, 'v' to capture the opaque frame and spacebar to confirm and save the RGB and Depth images for both frames.
 
 
 ## FAQ
