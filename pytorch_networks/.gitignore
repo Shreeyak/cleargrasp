@@ -1,0 +1,64 @@
+
+# PYTORCH NORMALS
+pytorch-normals/.ipynb_checkpoints/*
+pytorch-normals/logs*
+
+!pytorch-normals/data/
+
+pytorch-normals/data/*
+!pytorch-normals/data/results/
+!pytorch-normals/data/datasets/
+!pytorch-normals/data/depth2depth_sample_files/
+pytorch-normals/data/results/*
+!pytorch-normals/data/results/.gitkeep
+pytorch-normals/data/datasets/*
+!pytorch-normals/data/datasets/.gitkeep
+
+# PYTORCH OUTLINES
+pytorch-outlines/.ipynb_checkpoints/*
+pytorch-outlines/logs*
+
+!pytorch-outlines/data/
+pytorch-outlines/data/*
+!pytorch-outlines/data/results/
+!pytorch-outlines/data/datasets/
+!pytorch-outlines/data/depth2depth_sample_files/
+pytorch-outlines/data/results/*
+!pytorch-outlines/data/results/.gitkeep
+pytorch-outlines/data/datasets/*
+!pytorch-outlines/data/datasets/.gitkeep
+
+# PYTORCH MASKS
+pytorch-masks/.ipynb_checkpoints/*
+pytorch-masks/logs*
+
+!pytorch-masks/data/
+pytorch-masks/data/*
+!pytorch-masks/data/results/
+!pytorch-masks/data/datasets/
+!pytorch-masks/data/depth2depth_sample_files/
+pytorch-masks/data/results/*
+!pytorch-masks/data/results/.gitkeep
+pytorch-masks/data/datasets/*
+!pytorch-masks/data/datasets/.gitkeep
+
+# PYTORCH DEPTH
+pytorch-depth/.ipynb_checkpoints/*
+pytorch-depth/logs*
+
+!pytorch-depth/data/
+pytorch-depth/data/*
+!pytorch-depth/data/results/
+!pytorch-depth/data/datasets/
+!pytorch-depth/data/depth2depth_sample_files/
+pytorch-depth/data/results/*
+!pytorch-depth/data/results/.gitkeep
+pytorch-depth/data/datasets/*
+!pytorch-depth/data/datasets/.gitkeep
+
+# COMMON
+config*.yaml
+!config.sample.yaml
+__pycache__/
+.mypy_cache/
+.vscode/

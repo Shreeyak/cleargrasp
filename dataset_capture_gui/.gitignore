@@ -1,0 +1,13 @@
+
+*.pyc
+__pycache__/
+.vscode/
+
+!config.yaml.sample
+config.yaml
+
+
+# These folders exist to be populated with data, but that data is not to be saved to git
+data/*
+data/captures/*
+!data/captures/.gitkeep

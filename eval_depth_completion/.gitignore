@@ -1,0 +1,7 @@
+!config/*.yaml.sample
+config/*.yaml
+
+!data/.gitkeep
+data/*
+
+depth2depth

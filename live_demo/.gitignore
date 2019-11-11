@@ -1,0 +1,18 @@
+
+*.pyc
+__pycache__/
+.vscode/
+
+!config.yaml.sample
+config.yaml
+depth2depth
+
+realsense/build/
+data/
+
+# These folders exist to be populated with data, but that data is not to be saved to git
+data/*
+data/tmp/*
+!data/tmp/.gitkeep
+data/captures/*
+!data/captures/.gitkeep

@@ -1,0 +1,56 @@
+# Inference Config
+
+captures_dir: 'data/captures'  # Captured images will be stored in this directory
+
+# Surface Normals Model
+normals:
+  model: 'drn'  # Which model to use for inference. Possible values: ['unet', 'deeplab-resnet']
+  pathWeightsFile: 'data/checkpoints/normals/checkpoint-epoch-0000.pth'  # Path to the checkpoint to be loaded
+  inferenceHeight: 256
+  inferenceWidth: 256
+
+# Outlines Model
+outlines:
+  model: 'drn'  # Which model to use for inference. Possible values: ['unet', 'deeplab_resnet']
+  pathWeightsFile: 'data/checkpoints/outlines/checkpoint-epoch-0000.pth'  # Path to the checkpoint to be loaded
+  inferenceHeight: 256
+  inferenceWidth: 256
+
+# Segmentation Masks Model
+masks:
+  model: 'drn' # Which model to use for inference. Possible values: ['deeplab_resnet']
+  pathWeightsFile: 'data/checkpoints/masks/checkpoint-epoch-0000.pth'
+  inferenceHeight: 256
+  inferenceWidth: 256
+
+# Values Used for RGB Visualization of depth images.
+depthVisualization:
+  minDepth: 0.0  # meters. Depth less than this value not considered in creating rgb visualization of depth.
+  maxDepth: 1.5  # meters. Depth more than this value not considered in creating rgb visualization of depth.
+
+# depth2depth Module
+depth2depth:
+  pathExecutable: './depth2depth'  # The path to the bash script that runs the depth2depth module.
+  xres: 256  # Image Output Width
+  yres: 144  # Image Output Height
+  fx: 185  # Focal length in pixels along width
+  fy: 185  # Focal length in pixels along height
+  cx: 128  # Center of image in pixels along width
+  cy: 72   # Center of image in pixels along height
+  inertia_weight: 1000.0  # The strength of the penalty on the difference between the input and the output depth map on observed pixels. Set this value higher if you want to maintain the observed depth from input_depth.
+  smoothness_weight: 0.0001  # The strength of the penalty on the difference between the depths of neighboring pixels. Higher smoothness weight will produce soap-film-like result.
+  tangent_weight: 1  # The universal strength of the surface normal constraint. Higher tangent weight will force the output to have the same surface normal with the given one.
+
+
+# Parameters of Bi-Lateral Filter applied to output depth. Make all values 0 to disable the filter.
+outputDepthFilter:
+  d: 0
+  sigmaColor: 5
+  sigmaSpace: 10
+
+# Method used to modify input depth before depth completion
+# Various methods available:
+#    None - Do nothing
+#    mask - Get mask of transparent objects using DNN and delete all those pixels from input depth
+modifyInputDepth:
+  mode: 'mask'   # Valid values: ['', 'random_holes', 'mask', 'mask_normals']
