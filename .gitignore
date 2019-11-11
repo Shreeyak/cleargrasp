@@ -1,6 +1,10 @@
 # CUSTOM
+!data
+
 data/*
+!data/readme_images
 !data/.gitkeep
+
 .vscode/
 *.pyc
 __pycache__/
