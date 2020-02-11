@@ -17,8 +17,9 @@ Authors: [Shreeyak S Sajjan](https://www.linkedin.com/in/shreeyak-sajjan/), [Mat
 
 Publication: <i> Submitted to the International Conference on Robotics and Automation (ICRA), 2020 </i>
 
-Train and Test datasets: [DropBox](https://www.dropbox.com/sh/mly4daqrimdnfem/AACjZ6_e2kO5-7E0QVTNBFn1a?dl=0)  
-Model checkpoints: [DropBox](https://www.dropbox.com/sh/y79twz0c1pz01rt/AAD2jy2_9ZF0x8oZokBa0cs_a?dl=0)
+[Download Data - Training Set](http://clkgum.com/shreeyak/cleargrasp-dataset-train)  
+[Download Data - Testing and Validation Set](http://clkgum.com/shreeyak/cleargrasp-dataset-test)  
+[Download Model checkpoints](http://clkgum.com/shreeyak/cleargrasp-checkpoints)  
 
 </br></br></br></br></br></br></br></br>
 
