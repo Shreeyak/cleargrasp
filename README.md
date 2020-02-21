@@ -15,7 +15,7 @@ Resources : <b> [PDF](https://arxiv.org/abs/1910.02550) | [Website - Video, Data
 
 Authors: [Shreeyak S Sajjan](https://www.linkedin.com/in/shreeyak-sajjan/), [Matthew Moore](https://www.linkedin.com/in/matthewpaulmoore/), [Mike Pan](https://www.linkedin.com/in/panmike/), [Ganesh Nagaraja](https://www.linkedin.com/in/ganesh-nagaraja/), [Johnny Lee](http://johnnylee.net/), [Andy Zeng](http://andyzeng.github.io/), [Shuran Song](https://shurans.github.io/index.html)
 
-Publication: <i> Submitted to the International Conference on Robotics and Automation (ICRA), 2020 </i>
+Publication: <i> International Conference on Robotics and Automation (ICRA), 2020 </i>
 
 [Download Data - Training Set](http://clkgum.com/shreeyak/cleargrasp-dataset-train)  
 [Download Data - Testing and Validation Set](http://clkgum.com/shreeyak/cleargrasp-dataset-test)  
