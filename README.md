@@ -55,8 +55,8 @@ pip install requirements.txt
 Install other dependencies with:
 
 ```bash
-sudo apt-get install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
-sudo apt install libopenexr-dev zlib1g-dev openexr
+sudo apt install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
+sudo apt install libopenexr-dev zlib1g-dev openexr libgl-dev libgl1-mesa-dev
 sudo apt install xorg-dev  # display widows
 ```
 
