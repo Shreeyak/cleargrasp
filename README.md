@@ -45,13 +45,7 @@ Shreeyak Sajjan: shreeyak[dot]sajjan[at]gmail[dot]com
 
 ## Installation
 
-This code is tested with Ubuntu 16.04, Python3 and [Pytorch](https://pytorch.org/get-started/locally/) 1.3.  
-Install pip dependencies by running in terminal:
-
-```bash
-pip install -r requirements.txt
-```
-
+This code is tested with Ubuntu 16.04, Python3.6 and [Pytorch](https://pytorch.org/get-started/locally/) 1.3.  
 Install other dependencies with:
 
 ```bash
@@ -95,11 +89,17 @@ $ sudo apt-get install librealsense2-dbg
     git clone git@github.com:Shreeyak/greppy-gbrain-transparent-detection.git
     ```
 
-2. Download and extract the Train and Test datasets from [our DropBox directory](https://www.dropbox.com/sh/mly4daqrimdnfem/AACjZ6_e2kO5-7E0QVTNBFn1a?dl=0) (~100GB). Do note, a small sample dataset has been provided in this repository to testing.
+2. Install pip dependencies by running in terminal:
 
-3. Download and extract the model checkpoints from [our DropBox directory](https://www.dropbox.com/sh/y79twz0c1pz01rt/AAD2jy2_9ZF0x8oZokBa0cs_a?dl=0)  (933 MB)
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-4. Compile depth2depth (global optimization):
+3. Download and extract the Train and Test datasets from [our DropBox directory](https://www.dropbox.com/sh/mly4daqrimdnfem/AACjZ6_e2kO5-7E0QVTNBFn1a?dl=0) (~100GB). Do note, a small sample dataset has been provided in this repository to testing.
+
+4. Download and extract the model checkpoints from [our DropBox directory](https://www.dropbox.com/sh/y79twz0c1pz01rt/AAD2jy2_9ZF0x8oZokBa0cs_a?dl=0)  (933 MB)
+
+5. Compile depth2depth (global optimization):
 
     `depth2depth` is a C++ global optimization module adapted from the [DeepCompletion](http://deepcompletion.cs.princeton.edu/) Project that is used for depth completion. It resides in the `api/depth2depth/` directory.
 
