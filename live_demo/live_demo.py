@@ -20,7 +20,7 @@ from attrdict import AttrDict
 from PIL import Image
 
 sys.path.append('..')
-from api import api_utils, depth_completion_api
+from api import utils, depth_completion_api
 from realsense import camera
 
 
@@ -119,13 +119,13 @@ if __name__ == '__main__':
         outlines_rgb = depthcomplete.outlines_rgb
 
         # Display Results in Window
-        input_depth_mapped = api_utils.depth2rgb(input_depth, min_depth=config.depthVisualization.minDepth,
+        input_depth_mapped = utils.depth2rgb(input_depth, min_depth=config.depthVisualization.minDepth,
                                              max_depth=config.depthVisualization.maxDepth,
                                              color_mode=cv2.COLORMAP_JET, reverse_scale=True)
-        output_depth_mapped = api_utils.depth2rgb(output_depth, min_depth=config.depthVisualization.minDepth,
+        output_depth_mapped = utils.depth2rgb(output_depth, min_depth=config.depthVisualization.minDepth,
                                               max_depth=config.depthVisualization.maxDepth,
                                               color_mode=cv2.COLORMAP_JET, reverse_scale=True)
-        filtered_output_depth_mapped = api_utils.depth2rgb(filtered_output_depth,
+        filtered_output_depth_mapped = utils.depth2rgb(filtered_output_depth,
                                                        min_depth=config.depthVisualization.minDepth,
                                                        max_depth=config.depthVisualization.maxDepth,
                                                        color_mode=cv2.COLORMAP_JET, reverse_scale=True)

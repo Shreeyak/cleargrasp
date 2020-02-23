@@ -15,7 +15,7 @@ Resources : <b> [PDF](https://arxiv.org/abs/1910.02550) | [Website - Video, Data
 
 Authors: [Shreeyak S Sajjan](https://www.linkedin.com/in/shreeyak-sajjan/), [Matthew Moore](https://www.linkedin.com/in/matthewpaulmoore/), [Mike Pan](https://www.linkedin.com/in/panmike/), [Ganesh Nagaraja](https://www.linkedin.com/in/ganesh-nagaraja/), [Johnny Lee](http://johnnylee.net/), [Andy Zeng](http://andyzeng.github.io/), [Shuran Song](https://shurans.github.io/index.html)
 
-Publication: <i> International Conference on Robotics and Automation (ICRA), 2020 </i>
+Publication: <i> Submitted to the International Conference on Robotics and Automation (ICRA), 2020 </i>
 
 [Download Data - Training Set](http://clkgum.com/shreeyak/cleargrasp-dataset-train)  
 [Download Data - Testing and Validation Set](http://clkgum.com/shreeyak/cleargrasp-dataset-test)  
@@ -45,19 +45,20 @@ Shreeyak Sajjan: shreeyak[dot]sajjan[at]gmail[dot]com
 
 ## Installation
 
-This code is tested with Ubuntu 16.04, Python3 and [Pytorch](https://pytorch.org/get-started/locally/) 1.1.  
+This code is tested with Ubuntu 16.04, Python3 and [Pytorch](https://pytorch.org/get-started/locally/) 1.3.  
 Install pip dependencies by running in terminal:
 
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 Install other dependencies with:
 
 ```bash
-sudo apt install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
-sudo apt install libopenexr-dev zlib1g-dev openexr libgl-dev libgl1-mesa-dev
+sudo apt-get install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
+sudo apt install libopenexr-dev zlib1g-dev openexr
 sudo apt install xorg-dev  # display widows
+sudo apt install libglfw3-dev
 ```
 
 ### Optional
@@ -85,21 +86,6 @@ $ sudo apt-get install librealsense2-dev
 $ sudo apt-get install librealsense2-dbg
 ```
 
-#### GLFW
-
-[GLFW](https://github.com/glfw/glfw) is required for capturing images. 
-Simply download GLFW, enter root directory and run CMake with the relative or absolute path to the root of the source tree as an argument.
-In case of issues, check out their [compiling guide](https://www.glfw.org/docs/latest/compile.html).
-```bash
-# Compile and install GLFW
-git clone git@github.com:glfw/glfw.git
-cd glfw
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-```
 
 ## Setup
 
@@ -109,9 +95,9 @@ sudo make install
     git clone git@github.com:Shreeyak/greppy-gbrain-transparent-detection.git
     ```
 
-2. Download the Train and Test datasets from [our DropBox directory](https://www.dropbox.com/sh/mly4daqrimdnfem/AACjZ6_e2kO5-7E0QVTNBFn1a?dl=0) (~100GB). Do note, a small sample dataset has been provided in this repository to testing.
+2. Download and extract the Train and Test datasets from [our DropBox directory](https://www.dropbox.com/sh/mly4daqrimdnfem/AACjZ6_e2kO5-7E0QVTNBFn1a?dl=0) (~100GB). Do note, a small sample dataset has been provided in this repository to testing.
 
-3. Download the model checkpoints from [our DropBox directory](https://www.dropbox.com/sh/y79twz0c1pz01rt/AAD2jy2_9ZF0x8oZokBa0cs_a?dl=0)  (933 MB)
+3. Download and extract the model checkpoints from [our DropBox directory](https://www.dropbox.com/sh/y79twz0c1pz01rt/AAD2jy2_9ZF0x8oZokBa0cs_a?dl=0)  (933 MB)
 
 4. Compile depth2depth (global optimization):
 
