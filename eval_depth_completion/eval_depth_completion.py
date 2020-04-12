@@ -13,7 +13,8 @@ import itertools
 
 # Importing Pytorch before Open3D can cause unknown "invalid pointer" error
 import open3d as o3d
-sys.path.append('..')
+# sys.path.append('..')
+sys.path.append(os.path.join(os.path.dirname(__file__), '..')
 from api import depth_completion_api
 from api import utils as api_utils
 

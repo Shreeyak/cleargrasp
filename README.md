@@ -103,19 +103,20 @@ sudo make install
 
 ## Setup
 
-1. Clone the repository:
+1. Clone the repository. A small sample dataset of 5 real and 5 synthetic images is included.
 
     ```bash
-    git clone git@github.com:Shreeyak/greppy-gbrain-transparent-detection.git
+    git clone git@github.com:Shreeyak/cleargrasp.git
     ```
 
-2. Download the Train and Test datasets from [our DropBox directory](https://www.dropbox.com/sh/mly4daqrimdnfem/AACjZ6_e2kO5-7E0QVTNBFn1a?dl=0) (~100GB). Do note, a small sample dataset has been provided in this repository to testing.
+2. Download the data:  
+   a) [Train dataset](http://clkgum.com/shreeyak/cleargrasp-dataset-train) (72GB) - Contains the synthetic images used for training the models. No real images were used for training.  
+   b) [Val + Test datasets](http://clkgum.com/shreeyak/cleargrasp-dataset-test) (1.7GB) - Contains the real and synthetic images used for validation and testing.  
+   c) [Model Checkpoints](http://clkgum.com/shreeyak/cleargrasp-checkpoints) (0.9GB) - Trained checkpoints of our 3 deeplabv3+ models.
 
-3. Download the model checkpoints from [our DropBox directory](https://www.dropbox.com/sh/y79twz0c1pz01rt/AAD2jy2_9ZF0x8oZokBa0cs_a?dl=0)  (933 MB)
+3. Compile depth2depth (global optimization):
 
-4. Compile depth2depth (global optimization):
-
-    `depth2depth` is a C++ global optimization module adapted from the [DeepCompletion](http://deepcompletion.cs.princeton.edu/) Project that is used for depth completion. It resides in the `api/depth2depth/` directory.
+    `depth2depth` is a C++ global optimization module used for depth completion, adapted from the [DeepCompletion](http://deepcompletion.cs.princeton.edu/) project. It resides in the `api/depth2depth/` directory.
 
     - To compile the depth2depth binary, you will first need to identify the path to libhdf5. Run the following command in terminal:
     
@@ -137,19 +138,20 @@ sudo make install
         ```bash
         cd api/depth2depth/gaps
         export CPATH="/usr/include/hdf5/serial/"  # Ensure this path is same as read from output of `find /usr -iname "*hdf5.h*"`
+        
         make
         ```
 
-        This should create an executable in `./gaps/bin/x86_64/depth2depth`. The config files will need the path to this executable to run our depth estimation pipeline.
+        This should create an executable, `api/depth2depth/gaps/bin/x86_64/depth2depth`. The config files will need the path to this executable to run our depth estimation pipeline.
 
-    - Check the executable:
+    - Check the executable, by passing in the provided sample files:
     
         ```bash
         cd api/depth2depth/gaps
         bash depth2depth.sh
         ```
 
-        This will generate `gaps/sample_files/output-depth.png`, which should match the `expected-output-depth.png` sample file.
+        This will generate `gaps/sample_files/output-depth.png`, which should match the `expected-output-depth.png` sample file. It will also generate RGB visualizations of all the intermediate files.
 
 
 ## To run the code:

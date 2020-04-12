@@ -12,3 +12,5 @@ bin/x86_64/depth2depth \
  -input_normals "sample_files/normals.h5" \
  -input_tangent_weight "sample_files/occlusion-weight.png"
 
+
+python convert_intermediate_data_to_rgb.py --sample_files_dir "sample_files/"
