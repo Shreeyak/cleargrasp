@@ -17,4 +17,4 @@ termcolor>=1.1.0
 torch>=1.3.0
 torchvision>=0.4.1
 tqdm>=4.36.1
-open3d-python>=0.7.0.0
+open3d>=0.8.0.0

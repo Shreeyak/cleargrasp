@@ -6,7 +6,7 @@ This repository provides:
 - An API for our depth estimation pipeline
 - PyTorch code for training and testing our models
 - Demo code to see ClearGrasp in action with a RealSense D400 series camera
-- Demo code to run the full pipeline on an UR5 arm for pick and place for transparent objects.
+- Real images dataset capture utility
 
 
 <img align="left" src="data/readme_images/task.png" height=480px>
@@ -45,8 +45,9 @@ Shreeyak Sajjan: shreeyak[dot]sajjan[at]gmail[dot]com
 
 ## Installation
 
-This code is tested with Ubuntu 16.04, Python3.6 and [Pytorch](https://pytorch.org/get-started/locally/) 1.3.  
-Install system dependencies with:
+This code is tested with Ubuntu 16.04, Python3.6 and [Pytorch](https://pytorch.org/get-started/locally/) 1.3, and CUDA 9.0.  
+
+### System Dependencies
 
 ```bash
 sudo apt-get install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
@@ -144,18 +145,22 @@ $ sudo apt-get install librealsense2-dbg
 We provide a script to run our full pipeline on a dataset and calculate accuracy metrics (RMSE, MAE, etc). Resides in the directory `eval_depth_completion/`.  
 
 - Install dependencies and follow [Setup](#setup) to download our model checkpoints and compile `depth2depth`.
-- Create a local copy of the config file: 
+- Create a local copy of the config file:
+    
     ```bash
     cd eval_depth_completion/
     cp config/config.yaml.sample config/config.yaml
     ```
-- Edit the `config/config.yaml` file to set `pathWeightsFile` parameters to the paths of the respective model checkpoints. To run evaluation on the official test datasets, set path to official datasets within the `files` parameter.
-- Calculate accuracy metrics of depth completion on transparent objects:
+
+- Edit the `config/config.yaml` file to set `pathWeightsFile` parameters to the paths of the respective model checkpoints. To run evaluation on the different datasets, set the path(s) to their director(ies) within the `files` parameter.
+- Run ClearGrasp on the sample dataset:
+    
     ```bash
     python eval_depth_completion.py -c config/config.yaml
     ```
-
-    The script will use the sample data included in this repo to run depth completion of transparent objects. It will also report the metrics (RMSE, etc.) as seen in the paper. All inputs are resized to dimensions as per config. Resized inputs, output depths, output pointclouds and other intermediate files are also saved in the results. 
+    
+    The script will run ClearGrasp on the given dataset, storing all it's output and calculating accuracy metrics of the depth completion of transparent objects.
+     The metrics (RMSE, etc.) are stored in a csv file in the results dir. Resized inputs, output depths, output pointclouds and other intermediate files are also saved. 
     
     <p align="center"> 
         <img src="data/readme_images/eval-000000000-result-viz.png" alt="pipeline">  
@@ -170,15 +175,16 @@ We provide a script to run our full pipeline on a dataset and calculate accuracy
 ### 2. Live Demo
 
 We provide a demonstration of how to use our API on images streaming from realsense D400 series camera. Each new frame coming from the camera stream is passed through the depth completion module to obtain completed depth of transparent objects and the results are displayed in a window.  
-Resides in the folder `live-demo`. This demo requires the Librealsense SDK to be installed.
+Resides in the folder `live-demo/`. This demo requires the Librealsense SDK to be installed.
 
 1. Create a copy of the sample config file:
 
     ```bash
-    `cp config/config.sample.yaml config/config.yaml`
+    cd live_demo
+    cp config/config.yaml.sample config/config.yaml
     ```
 
-2. Edit `config/config.yaml` with paths to checkpoints of networks and
+2. Edit `config.yaml` with paths to checkpoints of networks and
 depth2depth executable. Edit parameters as per your camera.
 
 3. Compile `realsense.cpp`:
@@ -208,26 +214,26 @@ depth2depth executable. Edit parameters as per your camera.
     python live_demo.py -c config/config.yaml
     ```
 
-    This will open a new window displaying input image, input depth, intermediate outputs (surface normals, occlusion boundaries, mask), modified input depth and output depth. Expect around 1 FPS with an i7 7700K CPU and 1080ti GPU. The global optimization module is CPU bound and takes almost 1 sec per image at 256x144p resolution.
+    This will open a new window displaying input image, input depth, intermediate outputs (surface normals, occlusion boundaries, mask), modified input depth and output depth. Expect around 1 FPS with an i7 7700K CPU and 1080ti GPU. The global optimization module is CPU bound and takes almost 1 sec per image at 256x144p resolution with CPU at 4.2GHz.
 
 ### 3. Training Code
 
-The folder `pytorch_networks` contains the code used to train the
+The folder `pytorch_networks/` contains the code used to train the
 surface normals, occlusion boundary and semantic segmentation models.
 
 - Go the to respective folder (eg: `pytorch_networks/surface_normals`) and create a local copy of the config file:
     ```bash
-    cp config/config.sample.yaml config/config.yaml
+    cp config/config.yaml.sample config/config.yaml
     ```
 
-- Edit the `config/config.yaml` file to fill in the paths to the dataset, select hyperparameter values, etc. All the parameters are explained in comments within the config file.
+- Edit the `config.yaml` file to fill in the paths to the dataset, select hyperparameter values, etc. All the parameters are explained in comments within the config file.
 - Start training: 
     ```bash
-    python3 train.py -c config/config.yaml
+    python train.py -c config/config.yaml
     ```
 - Eval script can be run by: 
     ```bash
-    python3 eval.py -c config/config.yaml
+    python eval.py -c config/config.yaml
     ```
 
 ### 4. Dataset Capture GUI
@@ -236,25 +242,25 @@ and freezing that frame, each object was replaced with an identical spray-painte
 spray painted objects and the transparent objects they were replacing could be observed. With high resolution images, sub-millimeter accuracy can be achieved in the positioning
 of the objects.
 
-Run the `capture_image.py` script to launch a window that streams images directly from a Realsense D400 series camera. Press 'c' to capture the transparent frame, 'v' to capture the opaque frame and spacebar to confirm and save the RGB and Depth images for both frames.
+Run the `dataset_capture_gui/capture_image.py` script to launch a window that streams images directly from a Realsense D400 series camera. Press 'c' to capture the transparent frame, 'v' to capture the opaque frame and spacebar to confirm and save the RGB and Depth images for both frames.
 
 
 ## FAQ
 
 ### Details on depth2depth
 
-This executable expects the following parameters:
+The `depth2depth` executable expects the following parameters:
 
-- input_depth.png: The path for the raw depth map from sensor, which is the depth to refine. It should be saved as 4000 x depth in meter in a 16bit PNG.
-- output_depth.png: The path for the result, which is the completed depth. It is also saved as 4000 x depth in meter in a 16bit PNG.
-- Occlusion Weights: The depth discontinuities channel is extracted from the occlusion outlines models' outputs scaled and saved as png file.
-- Surface Normals: The output of surface normals model is saved as an .h5 file
-- xres, yres - The resolution of image in x and y axes.
-- fx, fy - The focal length used to take image in pixels
-- cx, cy - The centre of the image. Ideally it is equal to (height/2, width/2)
-- inertia weight - The strength of the penalty on the difference between the input and the output depth map on observed pixels. Set this value higher if you want to maintain the observed depth from input_depth.png.
-- smoothness_weight: The strength of the penalty on the difference between the depths of neighboring pixels. Higher smoothness weight will produce soap-film-like result.
-- tangent_weight: The universal strength of the surface normal constraint. Higher tangent weight will force the output to have the same surface normal with the given one.
+- **input_depth.png**: The path for the raw depth map from sensor, which is the depth to refine. It should be saved as 4000 x depth in meter in a 16bit PNG.
+- **output_depth.png**: The path for the result, which is the completed depth. It is also saved as 4000 x depth in meter in a 16bit PNG.
+- **Occlusion Weights**: The depth discontinuities channel is extracted from the occlusion outlines models' outputs scaled and saved as png file.
+- **Surface Normals**: The output of surface normals model is saved as an .h5 file
+- **xres, yres**: The resolution of image in x and y axes.
+- **fx, fy**: The focal length used to take image in pixels
+- **cx, cy**: The centre of the image. Ideally it is equal to (height/2, width/2)
+- **inertia weight**: The strength of the penalty on the difference between the input and the output depth map on observed pixels. Set this value higher if you want to maintain the observed depth from input_depth.png.
+- **smoothness_weight**: The strength of the penalty on the difference between the depths of neighboring pixels. Higher smoothness weight will produce soap-film-like result.
+- **tangent_weight**: The universal strength of the surface normal constraint. Higher tangent weight will force the output to have the same surface normal with the given one.
 
 ### Calculation of focal len in pixels (fx, fy)
 The focal len in pixels is calculated from the Field of View and Sensor Size of camera, as derived from [here](https://photo.stackexchange.com/questions/97213/finding-focal-length-from-image-size-and-fov):
@@ -269,7 +275,7 @@ F = A / tan(a)
 => (focal len in pixels) = ((image width or height)/2 ) / tan( FOV/2 )
 ```
 
-Here are the calculation for our images, with angles in degrees for image output at 288x512p:
+Here are the calculation for our synthetic images, with angles in degrees for image output at 288x512p:
 
 ```bash
 Fx = (512 / 2) / tan( 69.40 / 2 ) = 369.71 = 370 pixels
@@ -277,11 +283,14 @@ Fy = (288 / 2) / tan( 42.56 / 2 ) = 369.72 = 370 pixels
 ```
 
 ### ERROR: No module named open3d
-In case of Open3D not being recognized, try installing Open3D with:
+In case of Open3D not being recognized, try installing with:
 
 ```bash
-pip install open3d-python -U --no-cache-dir
+pip uninstall open3d-python
+pip uninstall open3d
+pip install open3d --no-cache-dir
 ```
+
 
 ### FIX for librealsense version V2.15 and earlier
 
