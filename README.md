@@ -45,28 +45,19 @@ Shreeyak Sajjan: shreeyak[dot]sajjan[at]gmail[dot]com
 
 ## Installation
 
-This code is tested with Ubuntu 16.04, Python3 and [Pytorch](https://pytorch.org/get-started/locally/) 1.1.  
-Install pip dependencies by running in terminal:
+This code is tested with Ubuntu 16.04, Python3.6 and [Pytorch](https://pytorch.org/get-started/locally/) 1.3.  
+Install system dependencies with:
 
 ```bash
-pip install requirements.txt
-```
-
-Install other dependencies with:
-
-```bash
-sudo apt install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
-sudo apt install libopenexr-dev zlib1g-dev openexr libgl-dev libgl1-mesa-dev
+sudo apt-get install libhdf5-10 libhdf5-serial-dev libhdf5-dev libhdf5-cpp-11
+sudo apt install libopenexr-dev zlib1g-dev openexr
 sudo apt install xorg-dev  # display widows
+sudo apt install libglfw3-dev
 ```
 
-### Optional
-If you want to run demos with an Intel RealSense camera, you may need to install [LibRealSense](https://github.com/IntelRealSense/librealsense) and [GLFW](https://github.com/glfw/glfw).
+### LibRealSense (Optional)
 
-
-#### LibRealSense
-
-[LibRealSense](https://github.com/IntelRealSense/librealsense) is required to stream and capture images from Intel Realsense D415/D435 stereo cameras.  
+If you want to run demos with an Intel RealSense camera, you may need to install [LibRealSense](https://github.com/IntelRealSense/librealsense). It is required to stream and capture images from Intel Realsense D415/D435 stereo cameras.  
 Please check the [installation guide](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md) to install from binaries, or compile from source.
 
 ```bash
@@ -85,38 +76,29 @@ $ sudo apt-get install librealsense2-dev
 $ sudo apt-get install librealsense2-dbg
 ```
 
-#### GLFW
-
-[GLFW](https://github.com/glfw/glfw) is required for capturing images. 
-Simply download GLFW, enter root directory and run CMake with the relative or absolute path to the root of the source tree as an argument.
-In case of issues, check out their [compiling guide](https://www.glfw.org/docs/latest/compile.html).
-```bash
-# Compile and install GLFW
-git clone git@github.com:glfw/glfw.git
-cd glfw
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-```
 
 ## Setup
 
-1. Clone the repository. A small sample dataset of 5 real and 5 synthetic images is included.
+1. Clone the repository. A small sample dataset of 3 real and 3 synthetic images is included.
 
     ```bash
     git clone git@github.com:Shreeyak/cleargrasp.git
     ```
 
-2. Download the data:  
-   a) [Train dataset](http://clkgum.com/shreeyak/cleargrasp-dataset-train) (72GB) - Contains the synthetic images used for training the models. No real images were used for training.  
-   b) [Val + Test datasets](http://clkgum.com/shreeyak/cleargrasp-dataset-test) (1.7GB) - Contains the real and synthetic images used for validation and testing.  
-   c) [Model Checkpoints](http://clkgum.com/shreeyak/cleargrasp-checkpoints) (0.9GB) - Trained checkpoints of our 3 deeplabv3+ models.
+2. Install pip dependencies by running in terminal:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Download the data:  
+   a) [Model Checkpoints](http://clkgum.com/shreeyak/cleargrasp-checkpoints) (0.9GB) - Trained checkpoints of our 3 deeplabv3+ models.  
+   b) [Train dataset](http://clkgum.com/shreeyak/cleargrasp-dataset-train) (Optional, 72GB) - Contains the synthetic images used for training the models. No real images were used for training.  
+   c) [Val + Test datasets](http://clkgum.com/shreeyak/cleargrasp-dataset-test) (Optional, 1.7GB) - Contains the real and synthetic images used for validation and testing.  
 
    Extract these into the `data/` directory or create symlinks to the extracted directories in `data/`.
 
-3. Compile depth2depth (global optimization):
+4. Compile depth2depth (global optimization):
 
     `depth2depth` is a C++ global optimization module used for depth completion, adapted from the [DeepCompletion](http://deepcompletion.cs.princeton.edu/) project. It resides in the `api/depth2depth/` directory.
 
