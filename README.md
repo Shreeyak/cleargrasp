@@ -114,6 +114,8 @@ sudo make install
    b) [Val + Test datasets](http://clkgum.com/shreeyak/cleargrasp-dataset-test) (1.7GB) - Contains the real and synthetic images used for validation and testing.  
    c) [Model Checkpoints](http://clkgum.com/shreeyak/cleargrasp-checkpoints) (0.9GB) - Trained checkpoints of our 3 deeplabv3+ models.
 
+   Extract these into the `data/` directory or create symlinks to the extracted directories in `data/`.
+
 3. Compile depth2depth (global optimization):
 
     `depth2depth` is a C++ global optimization module used for depth completion, adapted from the [DeepCompletion](http://deepcompletion.cs.princeton.edu/) project. It resides in the `api/depth2depth/` directory.
@@ -159,20 +161,28 @@ sudo make install
 ### 1. ClearGrasp Quick Demo - Evaluation of Depth Completion of Transparent Objects
 We provide a script to run our full pipeline on a dataset and calculate accuracy metrics (RMSE, MAE, etc). Resides in the directory `eval_depth_completion/`.  
 
-- As mentioned in [Setup](#setup), download our model checkpoints and compile depth2depth.
+- Install dependencies and follow [Setup](#setup) to download our model checkpoints and compile `depth2depth`.
 - Create a local copy of the config file: 
     ```bash
-    cp config/config.sample.yaml config/config.yaml
+    cd eval_depth_completion/
+    cp config/config.yaml.sample config/config.yaml
     ```
-- Edit the `config/config.yaml` file to fill in the paths to the checkpoints for all 3 models (parameter `pathWeightsFile`).
-- Run the depth completion script:
+- Edit the `config/config.yaml` file to set `pathWeightsFile` parameters to the paths of the respective model checkpoints. To run evaluation on the official test datasets, set path to official datasets within the `files` parameter.
+- Calculate accuracy metrics of depth completion on transparent objects:
     ```bash
-    python3 eval_depth_completion.py -c config/config.yaml
+    python eval_depth_completion.py -c config/config.yaml
     ```
 
-    The script will use the sample data included in this repo to run depth completion of transparent objects. It will also report the metrics (RMSE, etc.) as seen in the paper. All inputs are resized to dimensions as per config. Resized inputs, pointclouds and intermediate outputs (likesurface normal predictions) are also saved in the results.
+    The script will use the sample data included in this repo to run depth completion of transparent objects. It will also report the metrics (RMSE, etc.) as seen in the paper. All inputs are resized to dimensions as per config. Resized inputs, output depths, output pointclouds and other intermediate files are also saved in the results. 
+    
+    <p align="center"> 
+        <img src="data/readme_images/eval-000000000-result-viz.png" alt="pipeline">  
+    </p>
+    <p align="center"> 
+        <i>Example Result. In order: Input RGB image, predicted surface normals, predicted  boundaries, occlusion boundary weights, overlay of masks+boundaries, input depth, cleaned input depth, output depth, ground truth depth, mask of valid transparent pixels (over which metrics are calculated).</i>  
+    </p>
 
-    To run evaluation on the official test datasets, simply change the paths in the `files` parameter to point to directories of the official datasets.
+    
 
 
 ### 2. Live Demo

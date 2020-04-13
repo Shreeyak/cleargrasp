@@ -21,7 +21,7 @@ from PIL import Image
 from attrdict import AttrDict
 from termcolor import colored
 
-sys.path.append('..')
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from api import utils as api_utils
 from live_demo.realsense.camera import Camera
 

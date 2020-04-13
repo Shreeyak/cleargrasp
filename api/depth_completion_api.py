@@ -455,7 +455,7 @@ class DepthToDepthCompletion(object):
         mask_rgb[self.outlines_rgb[:, :, 1] > 0, 1] = 255
         masked_img = cv2.addWeighted(mask_rgb, 0.6, self.input_image, 0.4, 0)
 
-        mask_valid_region_3d = np.stack([self.mask_valid_region] * 3, axis=2)
+        mask_valid_region_3d = np.stack([self.mask_valid_region] * 3, axis=2)  # Ground truth mask - invalid depth pixels
 
         # Create Vizualization of all the results
         grid_image1 = np.concatenate(

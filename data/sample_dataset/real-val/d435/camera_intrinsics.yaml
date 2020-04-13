@@ -1,0 +1,8 @@
+# Camera Intrinsic Parameters
+camera_name: 'D435'
+xres: 1280           # Image Width
+yres: 720           # Image Height
+fx: 921             # Focal length in pixels along width
+fy: 921             # Focal length in pixels along height
+cx: 642             # Center of image in pixels along width
+cy: 359              # Center of image in pixels along height

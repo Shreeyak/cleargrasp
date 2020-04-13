@@ -19,7 +19,7 @@ import yaml
 from attrdict import AttrDict
 from PIL import Image
 
-sys.path.append('..')
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from api import api_utils, depth_completion_api
 from realsense import camera
 
