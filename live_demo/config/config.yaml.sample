@@ -1,25 +1,25 @@
 # Inference Config
 
-captures_dir: 'data/captures'  # Captured images will be stored in this directory
+captures_dir: '../data/captures'  # Captured images will be stored in this directory
 
 # Surface Normals Model
 normals:
   model: 'drn'  # Which model to use for inference. Possible values: ['unet', 'deeplab-resnet']
-  pathWeightsFile: 'data/checkpoints/normals/checkpoint-epoch-0000.pth'  # Path to the checkpoint to be loaded
+  pathWeightsFile: '../data/cleargrasp/cleargrasp-checkpoints/surface_normals/checkpoint_normals.pth'  # Path to the checkpoint to be loaded
   inferenceHeight: 256
   inferenceWidth: 256
 
 # Outlines Model
 outlines:
   model: 'drn'  # Which model to use for inference. Possible values: ['unet', 'deeplab_resnet']
-  pathWeightsFile: 'data/checkpoints/outlines/checkpoint-epoch-0000.pth'  # Path to the checkpoint to be loaded
+  pathWeightsFile: '../data/cleargrasp/cleargrasp-checkpoints/outlines/checkpoint_outlines.pth'  # Path to the checkpoint to be loaded
   inferenceHeight: 256
   inferenceWidth: 256
 
 # Segmentation Masks Model
 masks:
   model: 'drn' # Which model to use for inference. Possible values: ['deeplab_resnet']
-  pathWeightsFile: 'data/checkpoints/masks/checkpoint-epoch-0000.pth'
+  pathWeightsFile: '../data/cleargrasp/cleargrasp-checkpoints/mask_segmentation/checkpoint_mask.pth'
   inferenceHeight: 256
   inferenceWidth: 256
 
@@ -30,7 +30,7 @@ depthVisualization:
 
 # depth2depth Module
 depth2depth:
-  pathExecutable: './depth2depth'  # The path to the bash script that runs the depth2depth module.
+  pathExecutable: '../api/depth2depth/gaps/bin/x86_64/depth2depth'  # The path to the bash script that runs the depth2depth module.
   xres: 256  # Image Output Width
   yres: 144  # Image Output Height
   fx: 185  # Focal length in pixels along width

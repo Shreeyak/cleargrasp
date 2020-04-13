@@ -10,6 +10,7 @@ data/*
 *.pyc
 __pycache__/
 live_demo/dataset*
+*~
 
 
 # Byte-compiled / optimized / DLL files
