@@ -3,16 +3,52 @@ train:
   # For datasets, please pass atleast 1 value. If no datasets exist, pass "" as path for images.
   # Synthetic datasets with ground truth labels
   datasetsTrain:
-  - images: 'data/data/datasets/train/star-lying-flat-train/source-files/rgb-imgs'
-    labels: 'data/data/datasets/train/star-lying-flat-train/source-files/outlines'
+      - images: 'data/cleargrasp-dataset-train/stemless-plastic-champagne-glass-train/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-train/stemless-plastic-champagne-glass-train/camera-normals'
+      - images: 'data/cleargrasp-dataset-train/square-plastic-bottle-train/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-train/square-plastic-bottle-train/camera-normals'
+      - images: 'data/cleargrasp-dataset-train/heart-bath-bomb-train/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-train/heart-bath-bomb-train/camera-normals'
+      - images: 'data/cleargrasp-dataset-train/flower-bath-bomb-train/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-train/flower-bath-bomb-train/camera-normals'
+      - images: 'data/cleargrasp-dataset-train/cup-with-waves-train/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-train/cup-with-waves-train/camera-normals'
 
 
   # Synthetic datasets with ground truth labels - 10% split of train
   datasetsVal:
-    - images: 'data/data/datasets/val/cup-with-waves-val/source-files/rgb-imgs'
-      labels: 'data/data/datasets/val/cup-with-waves-val/source-files/outlines'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-val/stemless-plastic-champagne-glass-val/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-val/stemless-plastic-champagne-glass-val/camera-normals'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-val/square-plastic-bottle-val/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-val/square-plastic-bottle-val/camera-normals'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-val/heart-bath-bomb-val/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-val/heart-bath-bomb-val/camera-normals'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-val/flower-bath-bomb-val/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-val/flower-bath-bomb-val/camera-normals'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-val/cup-with-waves-val/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-val/cup-with-waves-val/camera-normals'
 
+  # Real Images (no ground truth labels)
+  datasetsTestReal:
+      - images: 'data/datasets/real-test/d415/'
+        labels: ''
+      - images: 'data/datasets/real-test/d435/'
+        labels: ''
+      - images: 'data/datasets/real-val/d435/'
+        labels: ''
 
+  # Synthetic datasets with ground truth labels - Used as test set
+  datasetsTestSynthetic:
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-test/glass-round-potion-test/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-test/glass-round-potion-test/camera-normals'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-test/glass-square-potion-test/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-test/glass-square-potion-test/camera-normals'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-test/star-bath-bomb-test/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-test/star-bath-bomb-test/camera-normals'
+      - images: 'data/cleargrasp-dataset-test-val/synthetic-test/tree-bath-bomb-test/rgb-imgs'
+        labels: 'data/cleargrasp-dataset-test-val/synthetic-test/tree-bath-bomb-test/camera-normals'
+
+  # For pretraining surface normals on Matterport3D and Scannet Datasets
   datasetsMatterportTrain:
     # - images: 'data/datasets/matterport3d/train/matterport_rgb/v1/scans'
     #   labels: 'data/datasets/matterport3d/train/matterport_render_normal'
@@ -26,21 +62,6 @@ train:
     # - images: 'data/datasets/scannet/scannet-rgb/scans/val'
     #   labels: 'data/datasets/scannet/scannet_render_normal/val'
 
-  # Real Images (no ground truth labels)
-  datasetsTestReal:
-    # - images: 'data/datasets/test/camera-pics/resized-files/preprocessed-rgb-imgs'
-    #   labels: ''
-    # - images: 'data/datasets/test/realsense-captures/resized-files/preprocessed-rgb-imgs'
-    #   labels: ''
-    # - images: 'data/datasets/test/realsense-demo-table-2/source-files/rgb-imgs'
-    #   labels: ''
-    # - images: 'data/datasets/test/realsense-demo-table-3/source-files/rgb-imgs'
-    #   labels: ''
-
-  # Synthetic datasets with ground truth labels - Used as test set
-  datasetsTestSynthetic:
-    - images: 'data/data/datasets/test-synthetic/scoop-val/source-files/rgb-imgs'
-      labels: 'data/data/datasets/test-synthetic/scoop-val/source-files/outlines'
 
   # Training/Validation Params
   model: "drn" # Possible values: ['deeplab_xception', 'deeplab_resnet', 'drn']
