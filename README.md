@@ -282,6 +282,10 @@ Fx = (512 / 2) / tan( 69.40 / 2 ) = 369.71 = 370 pixels
 Fy = (288 / 2) / tan( 42.56 / 2 ) = 369.72 = 370 pixels
 ```
 
+### Notes on data:
+1. The 4x4 transformation matrix for each object in the scene can give incorrect rotations since it is not normalized. Use the provided quaternion to get the rotation of each object.
+2. Some objects are present in the scene, but not visible to the camera. Your code will have to account for such objects when parsing through the data, using the provided masks.
+
 ### ERROR: No module named open3d
 In case of Open3D not being recognized, try installing with:
 
