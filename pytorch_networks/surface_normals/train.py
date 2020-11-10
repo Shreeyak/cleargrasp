@@ -83,10 +83,10 @@ for line in config_str:
 writer.add_text('Config', string, global_step=None)
 
 ###################### DataLoader #############################
-
 # Train Dataset - Create a dataset object for each dataset in our list, Concatenate datasets, select subset for training
 augs_train = iaa.Sequential([
     # Geometric Augs
+
     iaa.CenterCropToAspectRatio(1.33),
     iaa.Resize({
         "height": config.train.imgHeight,
