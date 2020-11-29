@@ -225,7 +225,7 @@ db_test_list = []
 if config.train.datasetsTestReal is not None:
     for dataset in config.train.datasetsTestReal:
         if dataset.images:
-            mask_dir = dataset.masks if dataset.masks else ''
+            mask_dir = dataset.masks if hasattr(dataset, 'masks') and dataset.masks else ''
             db = dataloader.SurfaceNormalsDataset(input_dir=dataset.images,
                                                   label_dir=dataset.labels,
                                                   mask_dir=mask_dir,
