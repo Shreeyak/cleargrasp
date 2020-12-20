@@ -107,9 +107,10 @@ if config.eval.datasetsSynthetic is not None:
     for dataset in config.eval.datasetsSynthetic:
         print('Creating Synthetic Images dataset from: "{}"'.format(dataset.images))
         if dataset.images:
+            mask_dir = dataset.masks if hasattr(dataset, 'masks') and dataset.masks else ''
             db = dataloader.SurfaceNormalsDataset(input_dir=dataset.images,
                                                   label_dir=dataset.labels,
-                                                  mask_dir=dataset.masks,
+                                                  mask_dir=mask_dir,
                                                   transform=augs_test,
                                                   input_only=None)
             db_test_list_synthetic.append(db)
@@ -120,9 +121,10 @@ if config.eval.datasetsReal is not None:
     for dataset in config.eval.datasetsReal:
         print('Creating Real Images dataset from: "{}"'.format(dataset.images))
         if dataset.images:
+            mask_dir = dataset.masks if hasattr(dataset, 'masks') and dataset.masks else ''
             db = dataloader.SurfaceNormalsDataset(input_dir=dataset.images,
                                                   label_dir=dataset.labels,
-                                                  mask_dir=dataset.masks,
+                                                  mask_dir=mask_dir,
                                                   transform=augs_test,
                                                   input_only=None)
             db_test_list_real.append(db)
