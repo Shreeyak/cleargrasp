@@ -160,7 +160,7 @@ class SurfaceNormalsDataset(Dataset):
 
             numLabels = len(self._datalist_label)
             if numLabels == 0:
-                raise ValueError('No labels found in given directory. Searched for {}'.format(imageSearchStr))
+                raise ValueError('No labels found in given directory. Searched for {}'.format(labels_dir))
             if numImages != numLabels:
                 raise ValueError('The number of images and labels do not match. Please check data,' +
                                  'found {} images and {} labels in dirs:\n'.format(numImages, numLabels) +
@@ -175,7 +175,7 @@ class SurfaceNormalsDataset(Dataset):
 
             numMasks = len(self._datalist_mask)
             if numMasks == 0:
-                raise ValueError('No masks found in given directory. Searched for {}'.format(imageSearchStr))
+                raise ValueError('No masks found in given directory. Searched for {}'.format(masks_dir))
             if numImages != numMasks:
                 raise ValueError('The number of images and masks do not match. Please check data,' +
                                  'found {} images and {} masks in dirs:\n'.format(numImages, numMasks) +
