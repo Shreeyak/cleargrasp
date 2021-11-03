@@ -3,7 +3,7 @@ h5py>=2.10.0
 imageio>=2.6.1
 git+https://github.com/aleju/imgaug
 numpy>=1.17.3
-opencv-python==4.1.1.26
+opencv-python==4.1.2.30
 git+https://github.com/jamesbowman/openexrpython.git
 oyaml>=0.9
 pathlib>=1.0.1

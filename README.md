@@ -43,6 +43,10 @@ Given a single RGB-D image of transparent objects, ClearGrasp first uses the col
 If you have any questions or find any bugs, please file a github issue or contact me:  
 Shreeyak Sajjan: shreeyak[dot]sajjan[at]gmail[dot]com
 
+### Updates:
+
+- Added temporary scripts that were used in handling data and creating visualizations. Reference only, might not run.
+
 ## Installation
 
 This code is tested with Ubuntu 16.04, Python3.6 and [Pytorch](https://pytorch.org/get-started/locally/) 1.3, and CUDA 9.0.  
@@ -246,6 +250,12 @@ Run the `dataset_capture_gui/capture_image.py` script to launch a window that st
 
 
 ## FAQ
+
+### Data Preprocessing (outlines creation)
+
+The script used for preprocessing data can be found at `z-ignore-scripts-helper/data_processing_script.py`. The script
+will not run due to missing files (these were intermediate files generated at render time, such as unrectified depth). 
+However, the script can be used as reference for creation of the outlines.
 
 ### Details on depth2depth
 
