@@ -46,6 +46,7 @@ Shreeyak Sajjan: shreeyak[dot]sajjan[at]gmail[dot]com
 
 ### Updates:
 
+- Updated broken links to data
 - Added temporary scripts that were used in handling data and creating visualizations. Reference only, might not run.
 
 ## Installation
