@@ -22,9 +22,6 @@ Publication: <i> International Conference on Robotics and Automation (ICRA), 202
 [Download Model checkpoints](https://storage.googleapis.com/cleargrasp/cleargrasp-checkpoints.zip)  
 [Download 3D Models](https://storage.googleapis.com/cleargrasp/cleargrasp-3d-models.tar)
 
-Best,
-Shreeyak
-
 </br></br></br></br></br></br></br></br>
 
 Transparent objects possess unique visual properties that make them incredibly difficult for standard 3D sensors to produce accurate depth estimates for. In many cases, they often appear as
