@@ -97,11 +97,11 @@ $ sudo apt-get install librealsense2-dbg
    ```bash
    pip install -r requirements.txt
    ```
-
+   
 3. Download the data:  
-   a) [Model Checkpoints](http://clkgum.com/shreeyak/cleargrasp-checkpoints) (0.9GB) - Trained checkpoints of our 3 deeplabv3+ models.  
-   b) [Train dataset](http://clkgum.com/shreeyak/cleargrasp-dataset-train) (Optional, 72GB) - Contains the synthetic images used for training the models. No real images were used for training.  
-   c) [Val + Test datasets](http://clkgum.com/shreeyak/cleargrasp-dataset-test) (Optional, 1.7GB) - Contains the real and synthetic images used for validation and testing.  
+   a) [Model Checkpoints](https://storage.googleapis.com/cleargrasp/cleargrasp-checkpoints.zip) (0.9GB) - Trained checkpoints of our 3 deeplabv3+ models.  
+   b) [Train dataset](https://storage.googleapis.com/cleargrasp/cleargrasp-dataset-train.tar) (Optional, 72GB) - Contains the synthetic images used for training the models. No real images were used for training.  
+   c) [Val + Test datasets](https://storage.googleapis.com/cleargrasp/cleargrasp-dataset-test-val.tar) (Optional, 1.7GB) - Contains the real and synthetic images used for validation and testing.  
 
    Extract these into the `data/` directory or create symlinks to the extracted directories in `data/`.
 
